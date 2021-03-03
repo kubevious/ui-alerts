@@ -5,13 +5,13 @@ import { render } from '@testing-library/react';
 
 import { Alerts } from '../src';
 
-function renderAlertView() {
+function renderAlerts() {
     return render(<Alerts />);
 }
 
 describe('Alerts', () => {
     test('Should check that the component Alerts is rendered', async () => {
-        const { findByTestId } = renderAlertView();
+        const { findByTestId } = renderAlerts();
 
         const copyClipboard = await findByTestId('alerts');
 
