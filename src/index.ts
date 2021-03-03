@@ -1,2 +1,2 @@
-
-export const MY_COMPONENT = 0;
+export { Alerts } from './Alerts';
+export { AlertView } from './AlertView';
