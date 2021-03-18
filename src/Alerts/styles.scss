@@ -44,15 +44,15 @@
         background-repeat: no-repeat;
 
         &.warn {
-            background-image: url("../images/warn.svg");
+            background-image: url("/img/alerts/warn.svg");
         }
 
         &.error {
-            background-image: url("../images/error.svg");
+            background-image: url("/img/alerts/error.svg");
         }
 
         &.info {
-            background-image: url("../images/info.svg");
+            background-image: url("/img/alerts/info.svg");
         }
     }
 
