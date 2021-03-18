@@ -4,6 +4,8 @@ import { sortSeverity, uniqueMessages, uniqueObjects } from '../utils';
 import { DnPath } from '@kubevious/ui-components';
 import * as DnUtils from '@kubevious/helpers/dist/dn-utils';
 import { Alert } from '../types';
+// @ts-ignore
+import ns from "../img/ns.svg";
 
 export const AlertView: FunctionComponent<{
     alerts: Alert[];
@@ -56,7 +58,7 @@ export const AlertView: FunctionComponent<{
         return (
             <div className="dn-container" key={dn} onClick={() => clickDn(dn)}>
                 <div className="logo-container">
-                    <img className="dn-logo" src={require("../img/ns.svg")} alt="logo" />
+                    <img className="dn-logo" src={ns} alt="logo" />
                 </div>
                 <div className="parts-container">
                     <DnPath dnParts={dnParts} />
