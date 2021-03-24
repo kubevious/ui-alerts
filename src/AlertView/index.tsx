@@ -52,7 +52,7 @@ export const AlertView: FunctionComponent<{
 
     const renderDnParts = (dn: string): JSX.Element => {
         const dnParts = DnUtils.parseDn(dn).slice(1);
-        const img = dnParts.length ? dnParts[dnParts.length - 1].kind : 'ns'
+        const img = dnParts.length ? dnParts[dnParts.length - 1].kind : ''
 
         return (
             <div className="dn-container" key={dn} onClick={() => clickDn(dn)}>
