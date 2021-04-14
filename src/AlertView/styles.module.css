@@ -1,0 +1,153 @@
+.alertViewContainer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    height: 100%;
+}
+
+.alertViewContainer .alerts {
+    width: calc(100% - 160px);
+    border-right: 1px solid #474d54;
+    padding-top: 5px;
+    overflow-y: hidden;
+}
+
+.alerts:global(.group-object), .alerts:global(.group-message) {
+    padding: 5px;
+}
+
+.groupOptions {
+    width: 160px;
+    padding: 10px;
+}
+
+.groupOptions .option {
+    display: flex;
+    justify-content: center;
+    border: 1px solid #666666;
+    color: #666666;
+    padding: 3px 5px;
+    margin-bottom: 5px;
+}
+
+.groupOptions .option:hover {
+    cursor: pointer;
+}
+
+.groupOptions .option.selected {
+    border: 1px solid white;
+    color: white;
+}
+
+.messageObjects {
+    padding-left: 40px;
+    margin-left: 0;
+    width: unset !important;
+}
+
+.objectContainer {
+    display: flex;
+    align-items: flex-start;
+}
+
+.objectContainer .alertItem {
+    margin-top: 3px;
+}
+
+.alertDetail {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 5px;
+    padding: 0 5px;
+}
+
+.alertDetail.even {
+    background: #474d54;
+}
+
+.messageContainer {
+    width: 40%;
+    word-break: break-word;
+    color: white;
+    display: flex;
+}
+
+.messageContainer.rule:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.alertItem {
+    min-width: 16px;
+    height: 16px;
+    background-size: contain;
+    margin-right: 10px;
+    background-repeat: no-repeat;
+    color: white;
+    margin-top: 3px;
+}
+
+.alertItem.warn {
+    background-image: url("/img/alerts/warn.svg");
+}
+
+.alertItem.error {
+    background-image: url("/img/alerts/error.svg");
+}
+
+.alertItem.info {
+    background-image: url("/img/alerts/info.svg");
+}
+
+.dnContainer {
+    display: flex;
+    width: 60%;
+}
+
+.dnContainer:hover {
+    cursor: pointer;
+}
+
+.logoContainer {
+    align-self: center;
+}
+
+.alertViewContainer .dnContainer .dnLogo {
+    height: 15px;
+    width: 15px;
+    margin-right: 10px;
+}
+
+.alertViewContainer .dnContainer .dnLogo.big {
+    height: 20px;
+    width: 20px;
+}
+
+:global(.group-no) .messageContainer {
+    width: 40%;
+}
+
+:global(.message-group-container) > div, :global(.message-group-container) .messageObjects .dnContainer {
+    width: 100%;
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.dnContainer :global(.parts-container .dn-path) {
+    font-size: 13px;
+    min-height: 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.dnContainer :global(.parts-container .dn-path span) {
+    margin: 0 4px 0 0;
+    line-height: 20px;
+}
+
+.dnContainer:hover :global(.dn-path span) {
+    text-decoration: underline;
+}

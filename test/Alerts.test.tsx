@@ -5,16 +5,12 @@ import { render } from '@testing-library/react';
 
 import { Alerts } from '../src';
 
-function renderAlerts() {
-    return render(<Alerts />);
-}
+const renderComponent = () => render(<Alerts />);
 
 describe('Alerts', () => {
     test('Should check that the component Alerts is rendered', async () => {
-        const { findByTestId } = renderAlerts();
+        const { findByTestId } = renderComponent();
 
-        const copyClipboard = await findByTestId('alerts');
-
-        expect(copyClipboard);
+        expect(findByTestId('alerts')).toBeTruthy();
     });
 });

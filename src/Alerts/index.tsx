@@ -5,15 +5,17 @@ import { AlertView } from '../AlertView';
 import { isEmptyArray, sortSeverity } from '../utils';
 import cx from 'classnames';
 
-import './styles.scss';
+import styles from './styles.module.css';
 
 import { Alert } from '../types';
 import { AlertsState } from '../types';
 
 const sharedState = app.sharedState;
 
-export class Alerts extends ClassComponent<{}, AlertsState> {
-    constructor(props: {} | Readonly<{}>) {
+export type Props = {};
+
+export class Alerts extends ClassComponent<Props, AlertsState> {
+    constructor(props: Props | Readonly<Props>) {
         super(props);
 
         this.state = {
@@ -49,7 +51,7 @@ export class Alerts extends ClassComponent<{}, AlertsState> {
     renderAlerts(alerts: Alert[]): JSX.Element {
         if (isEmptyArray(alerts)) {
             return sharedState.get('selected_dn') ? (
-                <div className="message-empty">No alerts for selected object.</div>
+                <div className={'message-empty'}>No alerts for selected object.</div>
             ) : (
                 <div className="message-empty">No object selected.</div>
             );
@@ -61,7 +63,7 @@ export class Alerts extends ClassComponent<{}, AlertsState> {
     render() {
         const { alerts } = this.state;
         return (
-            <div data-testid="alerts" id="alertsComponent" className={cx({ empty: isEmptyArray(alerts) })}>
+            <div data-testid="alerts" id="alertsComponent" className={cx(styles.alertsComponent, { [styles.empty]: isEmptyArray(alerts) })}>
                 {this.renderAlerts(alerts)}
             </div>
         );

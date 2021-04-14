@@ -5,13 +5,8 @@ import { render } from '@testing-library/react';
 
 import { AlertView } from '../src';
 
-const clickDn = (dn: string) => {
-    console.log('dn :>> ', dn);
-};
-
-const openRule = (ruleName: string) => {
-    console.log('ruleName :>> ', ruleName);
-};
+const clickDn = jest.fn();
+const openRule = jest.fn();
 
 const alert = {
     source: {
@@ -22,16 +17,12 @@ const alert = {
     severity: 'test',
 };
 
-function renderAlertView() {
-    return render(<AlertView alerts={[alert]} clickDn={clickDn} openRule={openRule} />);
-}
+const renderComponent = () => render(<AlertView alerts={[alert]} clickDn={clickDn} openRule={openRule} />);
 
 describe('AlertView', () => {
     test('Should check that the component AlertView is rendered', async () => {
-        const { findByTestId } = renderAlertView();
+        const { findByTestId } = renderComponent();
 
-        const copyClipboard = await findByTestId('alert-view');
-
-        expect(copyClipboard);
+        expect(findByTestId('alert-view')).toBeTruthy();
     });
 });
