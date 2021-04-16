@@ -12,6 +12,10 @@
     overflow-y: hidden;
 }
 
+.alertViewContainer .alerts:hover {
+    overflow-y: overlay;
+}
+
 .alerts:global(.group-object), .alerts:global(.group-message) {
     padding: 5px;
 }
