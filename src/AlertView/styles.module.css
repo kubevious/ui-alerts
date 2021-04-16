@@ -12,11 +12,17 @@
     overflow-y: hidden;
 }
 
+:global(#summaryComponent) .alertViewContainer .alerts {
+    border-right: none;
+    width: 100%;
+}
+
 .alertViewContainer .alerts:hover {
     overflow-y: overlay;
 }
 
-.alerts:global(.group-object), .alerts:global(.group-message) {
+.alerts:global(.group-object),
+.alerts:global(.group-message) {
     padding: 5px;
 }
 
@@ -92,15 +98,15 @@
 }
 
 .alertItem.warn {
-    background-image: url("/img/alerts/warn.svg");
+    background-image: url('/img/alerts/warn.svg');
 }
 
 .alertItem.error {
-    background-image: url("/img/alerts/error.svg");
+    background-image: url('/img/alerts/error.svg');
 }
 
 .alertItem.info {
-    background-image: url("/img/alerts/info.svg");
+    background-image: url('/img/alerts/info.svg');
 }
 
 .dnContainer {
@@ -131,7 +137,8 @@
     width: 40%;
 }
 
-:global(.message-group-container) > div, :global(.message-group-container) .messageObjects .dnContainer {
+:global(.message-group-container) > div,
+:global(.message-group-container) .messageObjects .dnContainer {
     width: 100%;
 }
 
