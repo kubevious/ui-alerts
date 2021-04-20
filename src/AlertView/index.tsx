@@ -1,7 +1,7 @@
 import React, { FC, ReactNode, useState } from 'react';
 import cx from 'classnames';
 import { sortSeverity, uniqueMessages, uniqueObjects } from '../utils';
-import { DnPath } from '@kubevious/ui-components';
+import { DnIconComponent, DnPath } from '@kubevious/ui-components';
 import * as DnUtils from '@kubevious/helpers/dist/dn-utils';
 import { Alert } from '../types';
 import styles from './styles.module.css';
@@ -57,12 +57,12 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, clickDn, openRule, group
 
     const renderDnParts = (dn: string): ReactNode => {
         const dnParts = DnUtils.parseDn(dn).slice(1);
-        const img = dnParts.length ? dnParts[dnParts.length - 1].kind : '';
+        const kind = dnParts.length ? dnParts[dnParts.length - 1].kind : '';
 
         return (
             <div className={styles.dnContainer} key={dn} onClick={() => clickDn(dn)}>
                 <div className={styles.logoContainer}>
-                    <img className={styles.dnLogo} src={`/img/entities/${img}.svg`} alt="logo" />
+                    <DnIconComponent kind={kind} size="xs" />
                 </div>
                 <div className="parts-container">
                     <DnPath dnParts={dnParts} />
@@ -104,7 +104,7 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, clickDn, openRule, group
         ));
     };
 
-    const renderObjectGroup = (): JSX.Element => {
+    const renderObjectGroup = (): ReactNode => {
         const objects = uniqueObjects(alerts.map(({ dn }) => ({ dn }))).map((o) => ({
             ...o,
             alerts: alerts.filter((a) => a.dn === o.dn),
@@ -124,7 +124,6 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, clickDn, openRule, group
             </>
         );
     };
-    console.log('ALL => ', styles);
 
     return (
         <div data-testid="alert-view" className={styles.alertViewContainer}>
