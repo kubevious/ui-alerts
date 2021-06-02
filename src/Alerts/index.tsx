@@ -1,3 +1,4 @@
+import _ from 'the-lodash';
 import React from 'react';
 import { ClassComponent } from '@kubevious/ui-framework';
 import { app } from '@kubevious/ui-framework';
@@ -32,9 +33,7 @@ export class Alerts extends ClassComponent<Props, AlertsState> {
             this.setState({ alerts: selected_object_alerts });
         });
         this.subscribeToSharedState('selected_dn', (selected_dn: string) => {
-            if (selected_dn) {
-                this.setState({ isDnSelected: true });
-            }
+            this.setState({ isDnSelected: _.isNotNullOrUndefined(selected_dn) });
         });
     }
 
@@ -50,21 +49,20 @@ export class Alerts extends ClassComponent<Props, AlertsState> {
 
     renderAlerts(alerts: Alert[]): JSX.Element {
         if (isEmptyArray(alerts)) {
-            return sharedState.get('selected_dn') ? (
-                <div className={'message-empty'}>No alerts for selected object.</div>
-            ) : (
-                <div className="message-empty">No object selected.</div>
-            );
+            return <div className={styles.empty}>No alerts for selected object.</div>
         }
-
         return <AlertView alerts={alerts.sort(sortSeverity)} clickDn={this.clickDn} openRule={this.openRule} />;
     }
 
     render() {
-        const { alerts } = this.state;
+        const { alerts, isDnSelected } = this.state;
         return (
             <div data-testid="alerts" id="alertsComponent" className={cx(styles.alertsComponent, { [styles.empty]: isEmptyArray(alerts) })}>
-                {this.renderAlerts(alerts)}
+                { isDnSelected && this.renderAlerts(alerts) }
+
+                { !isDnSelected && <>
+                    <div className={styles.empty}>No object selected.</div>
+                </> }
             </div>
         );
     }
