@@ -22,3 +22,12 @@ export const Error: Story = () => {
         </div>
     </>;
 };
+
+
+export const ExtryStyle: Story = () => {
+    return <>
+        <div style={{ background: '#1e1e1e' }}>
+            <SeverityIcon severity="error" extraStyles={{}} />
+        </div>
+    </>;
+};
