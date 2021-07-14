@@ -1,0 +1,23 @@
+
+.alertItem {
+    width: 16px;
+    height: 16px;
+    background-size: contain;
+    /* margin-right: 10px; */
+    background-repeat: no-repeat;
+    /* color: white; */
+    /* margin-top: 3px; */
+    margin: auto 0 auto 0;
+}
+
+.alertItem.warn {
+    background-image: url('/img/alerts/warn.svg');
+}
+
+.alertItem.error {
+    background-image: url('/img/alerts/error.svg');
+}
+
+.alertItem.info {
+    background-image: url('/img/alerts/info.svg');
+}

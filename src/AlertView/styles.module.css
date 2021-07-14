@@ -87,26 +87,9 @@
     text-decoration: underline;
 }
 
-.alertItem {
-    min-width: 16px;
-    height: 16px;
-    background-size: contain;
+.alertIcon {
+    margin-top: 2px;
     margin-right: 10px;
-    background-repeat: no-repeat;
-    color: white;
-    margin-top: 3px;
-}
-
-.alertItem.warn {
-    background-image: url('/img/alerts/warn.svg');
-}
-
-.alertItem.error {
-    background-image: url('/img/alerts/error.svg');
-}
-
-.alertItem.info {
-    background-image: url('/img/alerts/info.svg');
 }
 
 .dnContainer {

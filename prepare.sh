@@ -6,8 +6,9 @@ cd $MY_DIR
 rm -rf node_modules/
 rm -rf dist/
 
-npm install
-npm update \
+yarn
+
+yarn upgrade --latest \
     the-lodash \
     the-promise \
     @kubevious/ui-framework \

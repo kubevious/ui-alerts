@@ -5,6 +5,7 @@ import { DnIconComponent, DnPath } from '@kubevious/ui-components';
 import * as DnUtils from '@kubevious/helpers/dist/dn-utils';
 import { Alert } from '../types';
 import styles from './styles.module.css';
+import { SeverityIcon } from '..';
 
 const NO_GROUP = 'no';
 const OBJECT_GROUP = 'object';
@@ -47,7 +48,9 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, clickDn, openRule, group
                 })}
                 onClick={() => clickMessage(alert)}
             >
-                <div className={`${styles.alertItem} ${styles[alert.severity]}`} />
+                <div className={styles.alertIcon}>
+                    <SeverityIcon severity={alert.severity} />
+                </div>
                 {alert.msg}
             </div>
 
