@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 export interface SeverityIconProps {
     severity: string;
-    extraStyles: string | string[] | { [key: string]: any };
+    extraStyles?: string | string[] | { [key: string]: any };
 }
 
 export const SeverityIcon: FC<SeverityIconProps> = ({ severity, extraStyles }) => {
