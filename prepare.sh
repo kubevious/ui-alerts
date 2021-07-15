@@ -6,13 +6,8 @@ cd $MY_DIR
 rm -rf node_modules/
 rm -rf dist/
 
-yarn
+${MY_DIR}/update-dependencies.sh
 
-yarn upgrade --latest \
-    the-lodash \
-    the-promise \
-    @kubevious/ui-framework \
-    @kubevious/ui-middleware \
-    @kubevious/ui-components
+yarn
 
 ${MY_DIR}/build.sh
