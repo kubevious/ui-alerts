@@ -49,7 +49,7 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, clickDn, openRule, group
                 onClick={() => clickMessage(alert)}
             >
                 <div className={styles.alertIcon}>
-                    <SeverityIcon severity={alert.severity} />
+                   <SeverityIcon severity={alert.severity} />
                 </div>
                 {alert.msg}
             </div>
@@ -96,7 +96,9 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, clickDn, openRule, group
                     })}
                     onClick={() => clickMessage(message)}
                 >
-                    <div className={`${styles.alertItem} ${styles[message.severity]}`} />
+                    <div className={styles.alertIcon}>
+                        <SeverityIcon severity={message.severity} />
+                    </div>
                     {message.msg}
                 </div>
 
