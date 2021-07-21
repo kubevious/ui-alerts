@@ -7,7 +7,6 @@
 
 .alertViewContainer .alerts {
     width: calc(100% - 160px);
-    border-right: 1px solid #474d54;
     padding-top: 5px;
     overflow-y: hidden;
 }
@@ -27,26 +26,9 @@
 }
 
 .groupOptions {
+    border-left: 1px solid #474d54;
     width: 160px;
-    padding: 10px;
-}
-
-.groupOptions .option {
-    display: flex;
-    justify-content: center;
-    border: 1px solid #666666;
-    color: #666666;
-    padding: 3px 5px;
-    margin-bottom: 5px;
-}
-
-.groupOptions .option:hover {
-    cursor: pointer;
-}
-
-.groupOptions .option.selected {
-    border: 1px solid white;
-    color: white;
+    padding: 5px;
 }
 
 .messageObjects {

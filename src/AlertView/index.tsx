@@ -1,15 +1,15 @@
 import React, { FC, ReactNode, useState } from 'react';
 import cx from 'classnames';
 import { sortSeverity, uniqueMessages, uniqueObjects } from '../utils';
-import { DnIconComponent, DnPath } from '@kubevious/ui-components';
+import { DnIconComponent, DnPath, ToggleGroup } from '@kubevious/ui-components';
 import * as DnUtils from '@kubevious/helpers/dist/dn-utils';
 import { Alert } from '../types';
 import styles from './styles.module.css';
 import { SeverityIcon } from '..';
 
-const NO_GROUP = 'no';
-const OBJECT_GROUP = 'object';
-const MESSAGE_GROUP = 'message';
+const NO_GROUP = 'No Group';
+const OBJECT_GROUP = 'Group by Object';
+const MESSAGE_GROUP = 'Group by Alert';
 
 export interface AlertViewProps {
     alerts: Alert[];
@@ -140,34 +140,17 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, clickDn, openRule, group
                 {group === OBJECT_GROUP && renderObjectGroup()}
             </div>
 
-            {!groupPreset && (
+            {!groupPreset && <>
                 <div className={styles.groupOptions}>
-                    <div
-                        className={cx(styles.option, { [styles.selected]: group === NO_GROUP })}
-                        onClick={() => setGroup(NO_GROUP)}
-                    >
-                        No Group
-                    </div>
-
-                    <div
-                        className={cx(styles.option, {
-                            [styles.selected]: group === OBJECT_GROUP,
-                        })}
-                        onClick={() => setGroup(OBJECT_GROUP)}
-                    >
-                        Group by Object
-                    </div>
-
-                    <div
-                        className={cx(styles.option, {
-                            [styles.selected]: group === MESSAGE_GROUP,
-                        })}
-                        onClick={() => setGroup(MESSAGE_GROUP)}
-                    >
-                        Group by Alert
-                    </div>
+                    <ToggleGroup
+                        items={[ NO_GROUP, OBJECT_GROUP, MESSAGE_GROUP ]}
+                        selectedItem={group}
+                        onSelectionChange={(x) => setGroup(x)}
+                        >
+                    </ToggleGroup>
                 </div>
-            )}
+            </>}
+
         </div>
     );
 };
