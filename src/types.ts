@@ -6,7 +6,7 @@ export interface AlertsState {
 
 export type Alert = {
     source: {
-        id: string;
+        id?: string;
         kind: string;
     };
     msg: string;

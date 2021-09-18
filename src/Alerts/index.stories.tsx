@@ -1,11 +1,12 @@
 import { app } from '@kubevious/ui-framework';
 import { Story } from '@storybook/react';
 import React from 'react';
-import { Alerts } from '../Alerts';
+import { Alerts } from './';
 import { CallbackHook } from '@kubevious/ui-components';
 
 export default {
     title: 'Alerts',
+    component: Alerts
 };
 
 export const Default: Story = () => {
@@ -37,6 +38,7 @@ export const NoObjectSelected: Story = () => {
                 app.sharedState.set("selected_object_alerts", null)
             }}
             cleanup={() => {
+                return
             }}
             />
         <div style={{ background: '#1e1e1e', height: '300px' }}>

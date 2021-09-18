@@ -102,10 +102,14 @@
     width: 40%;
 }
 
-:global(.message-group-container) > div,
+
+.groupContainer {
+    padding-left: 5px;
+}
+/* :global(.message-group-container) > div,
 :global(.message-group-container) .messageObjects .dnContainer {
     width: 100%;
-}
+} */
 
 .fullWidth {
     width: 100%;

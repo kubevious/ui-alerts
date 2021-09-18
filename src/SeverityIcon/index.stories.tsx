@@ -5,6 +5,7 @@ import { SeverityIcon } from '../';
 
 export default {
     title: 'SeverityIcon',
+    component: SeverityIcon
 };
 
 export const Warning: Story = () => {

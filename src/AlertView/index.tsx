@@ -1,8 +1,7 @@
 import React, { FC, ReactNode, useState } from 'react';
 import cx from 'classnames';
 import { sortSeverity, uniqueMessages, uniqueObjects } from '../utils';
-import { DnIconComponent, DnPath, ToggleGroup } from '@kubevious/ui-components';
-import * as DnUtils from '@kubevious/helpers/dist/dn-utils';
+import { DnLink, ToggleGroup } from '@kubevious/ui-components';
 import { Alert } from '../types';
 import styles from './styles.module.css';
 import { SeverityIcon } from '..';
@@ -13,17 +12,18 @@ const MESSAGE_GROUP = 'Group by Alert';
 
 export interface AlertViewProps {
     alerts: Alert[];
-    clickDn: (dn: string) => void;
-    openRule: (ruleName: string) => void;
+    openRule?: (ruleName: string) => void;
     groupPreset?: string;
 }
 
-export const AlertView: FC<AlertViewProps> = ({ alerts, clickDn, openRule, groupPreset }) => {
+export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset }) => {
     const [group, setGroup] = useState<string>(groupPreset || NO_GROUP);
 
     const clickMessage = (alert: Alert): void => {
-        if (alert.source.kind === 'rule') {
-            openRule(alert.source.id);
+        if (alert.source.kind === 'rule' && alert.source.id) {
+            if (openRule) {
+                openRule(alert.source.id);
+            }
         }
     };
 
@@ -59,20 +59,22 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, clickDn, openRule, group
     );
 
     const renderDnParts = (dn: string): ReactNode => {
-        const dnParts = DnUtils.parseDn(dn).slice(1);
-        const kind = dnParts.length ? dnParts[dnParts.length - 1].kind : '';
 
-        return (
-            <div className={styles.dnContainer} key={dn} onClick={() => clickDn(dn)}>
-                <div className={styles.logoContainer}>
-                    <DnIconComponent kind={kind} size="xs" />
-                </div>
-                <div className="parts-container">
-                    <DnPath dnParts={dnParts} />
-                </div>
-            </div>
-        );
+        return <>
+            <DnLink dn={dn} size='xs'>
+            </DnLink>
+        </>;
+
     };
+
+
+    const renderNoGroup = (): ReactNode => {
+
+        return <>
+            {alerts.map((alert, index) => renderAlert({ alert, index }))}
+        </>
+
+    }
 
     const renderMessageGroup = (): ReactNode => {
         const messages = uniqueMessages(
@@ -89,7 +91,7 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, clickDn, openRule, group
             .sort(sortSeverity);
 
         return messages.map((message, index) => (
-            <div className="message-group-container" key={index}>
+            <div className={styles.groupContainer} key={index}>
                 <div
                     className={cx(styles.messageContainer, {
                         [styles.rule]: message.source.kind === 'rule',
@@ -118,7 +120,7 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, clickDn, openRule, group
         return (
             <>
                 {objects.map((object, index) => (
-                    <div className="message-group-container" key={index}>
+                    <div className={styles.groupContainer} key={index}>
                         <div className={styles.objectContainer}>{object.dn && renderDnParts(object.dn)}</div>
 
                         <div className={styles.messageObjects}>
@@ -133,7 +135,7 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, clickDn, openRule, group
     return (
         <div data-testid="alert-view" className={styles.alertViewContainer}>
             <div className={`${styles.alerts} group-${group}`}>
-                {group === NO_GROUP && <>{alerts.map((alert, index) => renderAlert({ alert, index }))}</>}
+                {group === NO_GROUP && renderNoGroup()}
 
                 {group === MESSAGE_GROUP && renderMessageGroup()}
 

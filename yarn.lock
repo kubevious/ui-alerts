@@ -1535,10 +1535,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@kubevious/helpers@^1.0.57":
-  version "1.0.57"
-  resolved "https://registry.yarnpkg.com/@kubevious/helpers/-/helpers-1.0.57.tgz#17f00d17f463320bd23af64c0ae64f837d29b92e"
-  integrity sha512-baNO0/zIh1mo96eJH80+NsDIW0c0tdvtShKP2R8JXMPvWBbpVksG9AQ76LYbp24VWXXQaSOju/K98fdDYrcONQ==
+"@kubevious/helpers@^1.0.62":
+  version "1.0.62"
+  resolved "https://registry.yarnpkg.com/@kubevious/helpers/-/helpers-1.0.62.tgz#68a9079411b7ec8a1cb6a15d6d3c458f54b51ff9"
+  integrity sha512-8UleQ3aDzjH008x5FVXv5dXa6gHVA3+D8KuChgcntBwWzme8JmIbvrlbIRnUgf6ZsQSHSo26bzHl7YFicMsPyQ==
   dependencies:
     moment "^2.29.1"
     the-lodash "^2.0.9"
@@ -1555,18 +1555,18 @@
     the-promise "^2.0.12"
     uuid "^8.3.2"
 
-"@kubevious/ui-components@^1.0.153":
-  version "1.0.153"
-  resolved "https://registry.yarnpkg.com/@kubevious/ui-components/-/ui-components-1.0.153.tgz#35b6173c69c77a366751497743140bb58391dec0"
-  integrity sha512-DJ1h27VYu8fn13u/E4LFv7qW6iBnt8X+0TDG1uqw2GNyh1WrF0ttXYct41lDYoHGtb8WfuAKTO6dXiqKBvFt5w==
+"@kubevious/ui-components@^1.0.156":
+  version "1.0.156"
+  resolved "https://registry.yarnpkg.com/@kubevious/ui-components/-/ui-components-1.0.156.tgz#0b3c445c57a839e6d5bba7f7a269ca26219d4e93"
+  integrity sha512-g0tDHD6tTlOQrXDYx5/lSVawCkSVyeuuM/qafuBxisvOjS+Od+SyxoV7sZ3y4z1bau8RZr7SCW/TEhqZxbGecQ==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^1.2.35"
     "@fortawesome/free-regular-svg-icons" "^5.15.1"
     "@fortawesome/free-solid-svg-icons" "^5.15.3"
     "@fortawesome/react-fontawesome" "^0.1.14"
-    "@kubevious/helpers" "^1.0.57"
+    "@kubevious/helpers" "^1.0.62"
     "@kubevious/ui-framework" "^1.0.50"
-    "@kubevious/ui-middleware" "^1.0.34"
+    "@kubevious/ui-middleware" "^1.0.38"
     bootstrap "^5.0.0"
     classnames "^2.2.6"
     codemirror "^5.60.0"
@@ -1596,7 +1596,7 @@
     the-promise "^2.0.13"
     uuid "^8.3.2"
 
-"@kubevious/ui-middleware@^1.0.34":
+"@kubevious/ui-middleware@^1.0.38":
   version "1.0.38"
   resolved "https://registry.yarnpkg.com/@kubevious/ui-middleware/-/ui-middleware-1.0.38.tgz#a366f2a5fab77855d9dae2adf82db559a92f0ed3"
   integrity sha512-IYZt1p8slQYyofOyLrBkKN/7CxCUwZul71QfRFcZo3Y/9sETItfRr9oPStpy5sXizRDuXr22kFlnXFWc7pf9WQ==

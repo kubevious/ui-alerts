@@ -13,7 +13,9 @@ import { AlertsState } from '../types';
 
 const sharedState = app.sharedState;
 
-export type Props = {};
+export interface Props {
+
+}
 
 export class Alerts extends ClassComponent<Props, AlertsState> {
     constructor(props: Props | Readonly<Props>) {
@@ -24,7 +26,6 @@ export class Alerts extends ClassComponent<Props, AlertsState> {
             isDnSelected: false,
         };
 
-        this.clickDn = this.clickDn.bind(this);
         this.openRule = this.openRule.bind(this);
     }
 
@@ -37,11 +38,6 @@ export class Alerts extends ClassComponent<Props, AlertsState> {
         });
     }
 
-    clickDn(dn: string): void {
-        sharedState.set('selected_dn', dn);
-        sharedState.set('auto_pan_to_selected_dn', true);
-    }
-
     openRule(ruleName: string): void {
         sharedState.set('rule_editor_selected_rule_id', ruleName);
         sharedState.set('focus_rule_editor', true);
@@ -51,7 +47,7 @@ export class Alerts extends ClassComponent<Props, AlertsState> {
         if (isEmptyArray(alerts)) {
             return <div className={styles.empty}>No alerts for selected object.</div>
         }
-        return <AlertView alerts={alerts.sort(sortSeverity)} clickDn={this.clickDn} openRule={this.openRule} />;
+        return <AlertView alerts={alerts.sort(sortSeverity)} openRule={this.openRule} />;
     }
 
     render() {
