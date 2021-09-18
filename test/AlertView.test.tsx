@@ -5,7 +5,6 @@ import { render } from '@testing-library/react';
 
 import { AlertView } from '../src';
 
-const clickDn = jest.fn();
 const openRule = jest.fn();
 
 const alert = {
@@ -17,7 +16,7 @@ const alert = {
     severity: 'test',
 };
 
-const renderComponent = () => render(<AlertView alerts={[alert]} clickDn={clickDn} openRule={openRule} />);
+const renderComponent = () => render(<AlertView alerts={[alert]} openRule={openRule} />);
 
 describe('AlertView', () => {
     test('Should check that the component AlertView is rendered', async () => {
