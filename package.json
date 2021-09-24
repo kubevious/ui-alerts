@@ -22,7 +22,7 @@
   "author": "Ruben Hakopian <ruben.hakopian@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@kubevious/ui-components": "^1.0.159",
+    "@kubevious/ui-components": "^1.0.160",
     "@kubevious/ui-framework": "^1.0.50",
     "classnames": "^2.2.6",
     "popper.js": "^1.16.1",
