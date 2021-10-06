@@ -16,13 +16,14 @@
     "format": "prettier --write ./src/ ./test/",
     "format-check": "prettier --write ./src/ ./test/",
     "lint": "eslint",
-    "storybook": "start-storybook -s ./public,./node_modules/@kubevious/entity-meta/public -p 6006",
+    "storybook": "start-storybook -s ./public,./node_modules/@kubevious/entity-meta/public,./node_modules/@kubevious/ui-components/public -p 6006",
     "build-storybook": "build-storybook"
   },
   "author": "Ruben Hakopian <ruben.hakopian@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@kubevious/ui-components": "^1.0.161",
+    "@kubevious/entity-meta": "^1.0.18",
+    "@kubevious/ui-components": "^1.0.170",
     "@kubevious/ui-framework": "^1.0.50",
     "classnames": "^2.2.6",
     "popper.js": "^1.16.1",

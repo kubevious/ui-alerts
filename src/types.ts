@@ -13,7 +13,6 @@ export type Alert = {
     severity: string;
     id?: string;
     dn?: string;
-    uiKey?: string;
 };
 
 export type Dn = {

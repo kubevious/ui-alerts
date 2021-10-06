@@ -1,10 +1,11 @@
-import React, { FC, ReactNode, useState } from 'react';
+import React, { FC, Fragment, ReactNode, useState } from 'react';
 import cx from 'classnames';
 import { sortSeverity, uniqueMessages, uniqueObjects } from '../utils';
 import { DnLink, ToggleGroup } from '@kubevious/ui-components';
 import { Alert } from '../types';
 import styles from './styles.module.css';
-import { SeverityIcon } from '..';
+import { SeverityIcon } from '@kubevious/ui-components';
+import { SeverityType } from '@kubevious/ui-components/dist/SeverityIcon/types';
 
 const NO_GROUP = 'No Group';
 const OBJECT_GROUP = 'Group by Object';
@@ -27,36 +28,19 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset })
         }
     };
 
-    const renderAlert = ({
-        alert,
-        index,
-        shouldRenderDn = true,
-    }: {
-        alert: Alert;
-        index?: number;
-        shouldRenderDn?: boolean;
-    }): ReactNode => (
-        <div
-            className={cx(styles.alertDetail, {
-                [styles.even]: index && index % 2 !== 0,
+    const renderAlertMsg = (alert : Alert) => {
+        return <div
+            className={cx(styles.messageContainer, styles.fullWidth, {
+                [styles.rule]: alert.source.kind === 'rule',
             })}
-            key={alert.uiKey || index}
+            onClick={() => clickMessage(alert)}
         >
-            <div
-                className={cx(styles.messageContainer, styles.fullWidth, {
-                    [styles.rule]: alert.source.kind === 'rule',
-                })}
-                onClick={() => clickMessage(alert)}
-            >
-                <div className={styles.alertIcon}>
-                   <SeverityIcon severity={alert.severity} />
-                </div>
-                {alert.msg}
+            <div className={styles.alertIcon}>
+                <SeverityIcon severity={(alert.severity as SeverityType)} />
             </div>
-
-            {shouldRenderDn && alert.dn && renderDnParts(alert.dn)}
+            {alert.msg}
         </div>
-    );
+    }
 
     const renderDnParts = (dn: string): ReactNode => {
 
@@ -70,9 +54,28 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset })
 
     const renderNoGroup = (): ReactNode => {
 
-        return <>
-            {alerts.map((alert, index) => renderAlert({ alert, index }))}
-        </>
+        return <div className={styles.alertTable}>
+            { alerts.map((alert, index) => <Fragment key={index}>
+
+             
+                <div
+                    className={cx(styles.alertDetail, {
+                        [styles.even]: index && index % 2 !== 0,
+                    })}
+                >
+                    {renderAlertMsg(alert)}
+                </div>   
+
+                <div
+                    className={cx(styles.alertDetail, {
+                        [styles.even]: index && index % 2 !== 0,
+                    })}
+                    >
+                    {alert.dn && renderDnParts(alert.dn)}
+                </div>  
+
+            </Fragment>)}
+        </div>
 
     }
 
@@ -99,7 +102,7 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset })
                     onClick={() => clickMessage(message)}
                 >
                     <div className={styles.alertIcon}>
-                        <SeverityIcon severity={message.severity} />
+                        <SeverityIcon severity={(message.severity as SeverityType)} />
                     </div>
                     {message.msg}
                 </div>
@@ -124,7 +127,7 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset })
                         <div className={styles.objectContainer}>{object.dn && renderDnParts(object.dn)}</div>
 
                         <div className={styles.messageObjects}>
-                            {object.alerts.map((alert) => renderAlert({ alert, shouldRenderDn: false }))}
+                            {object.alerts.map((alert) => renderAlertMsg(alert))}
                         </div>
                     </div>
                 ))}

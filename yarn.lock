@@ -1530,10 +1530,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@kubevious/entity-meta@^1.0.14":
-  version "1.0.14"
-  resolved "https://registry.yarnpkg.com/@kubevious/entity-meta/-/entity-meta-1.0.14.tgz#4c4511b72d6030f19dbe559d253996315b5a92ac"
-  integrity sha512-tQoUtwYSoZaSGl4vxjmrcLGDwMiyX030WX1o52iH8G/DmCKZstaeoMMyKwwyc3QnMYdnBQBvA0Fu0MBCMTm9Yg==
+"@kubevious/entity-meta@^1.0.18":
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/@kubevious/entity-meta/-/entity-meta-1.0.18.tgz#d9b07ec2d05d17659bb2735dda1067e185912018"
+  integrity sha512-LuCwWeJmhGPfP1lNDmkSZtdBN3XYXSX6McL3x+Pgmxx0+viPdAHk16s2UKzSN/3UXztXQ0VOvfnhxxDmFLxeUQ==
   dependencies:
     the-lodash "^2.0.9"
 
@@ -1547,16 +1547,16 @@
     the-promise "^2.0.12"
     uuid "^8.3.2"
 
-"@kubevious/ui-components@^1.0.161":
-  version "1.0.161"
-  resolved "https://registry.yarnpkg.com/@kubevious/ui-components/-/ui-components-1.0.161.tgz#c72ad360b504bf473a3ed8a4093ada3c4443f468"
-  integrity sha512-13bz7UZ/tiMIZ4UhFqJTnM6h4fgmF1leH4ByVadrUs+IJTL/BLVoAsxUOsFPwB16yAppnhhtBNaKZ/5CF1We5Q==
+"@kubevious/ui-components@^1.0.170":
+  version "1.0.170"
+  resolved "https://registry.yarnpkg.com/@kubevious/ui-components/-/ui-components-1.0.170.tgz#5dfa5d457fc6a4ba3119c598cf290308944c34ce"
+  integrity sha512-tastCES538+n16nvjer8Eo0Hoe4jzmNjoRKwbcN2zzDlJp4p38GG6fgiz0IdZk0fH/xnrRXv/j+XWj6l4VJFaw==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^1.2.35"
     "@fortawesome/free-regular-svg-icons" "^5.15.1"
     "@fortawesome/free-solid-svg-icons" "^5.15.3"
     "@fortawesome/react-fontawesome" "^0.1.14"
-    "@kubevious/entity-meta" "^1.0.14"
+    "@kubevious/entity-meta" "^1.0.18"
     "@kubevious/ui-framework" "^1.0.50"
     "@kubevious/ui-middleware" "^1.0.39"
     bootstrap "^5.0.0"
