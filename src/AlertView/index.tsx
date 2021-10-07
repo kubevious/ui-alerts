@@ -15,9 +15,10 @@ export interface AlertViewProps {
     alerts: Alert[];
     openRule?: (ruleName: string) => void;
     groupPreset?: string;
+    hideGroupSelector?: boolean;
 }
 
-export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset }) => {
+export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset, hideGroupSelector }) => {
     const [group, setGroup] = useState<string>(groupPreset || NO_GROUP);
 
     const clickMessage = (alert: Alert): void => {
@@ -145,7 +146,7 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset })
                 {group === OBJECT_GROUP && renderObjectGroup()}
             </div>
 
-            {!groupPreset && <>
+            {!hideGroupSelector && <>
                 <div className={styles.groupOptions}>
                     <ToggleGroup
                         items={[ NO_GROUP, OBJECT_GROUP, MESSAGE_GROUP ]}
