@@ -7,9 +7,9 @@ import styles from './styles.module.css';
 import { SeverityIcon } from '@kubevious/ui-components';
 import { SeverityType } from '@kubevious/ui-components/dist/SeverityIcon/types';
 
-const NO_GROUP = 'No Group';
-const OBJECT_GROUP = 'Group by Object';
-const MESSAGE_GROUP = 'Group by Alert';
+export const NO_GROUP = 'No Group';
+export const OBJECT_GROUP = 'Group by Object';
+export const MESSAGE_GROUP = 'Group by Alert';
 
 export interface AlertViewProps {
     alerts: Alert[];
