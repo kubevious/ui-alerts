@@ -47,7 +47,6 @@
 }
 
 .messageContainer {
-    width: 40%;
     word-break: break-word;
     color: white;
     display: flex;
@@ -76,10 +75,6 @@
 .alertViewContainer .dnContainer .dnLogo.big {
     height: 20px;
     width: 20px;
-}
-
-:global(.group-no) .messageContainer {
-    width: 40%;
 }
 
 .groupContainer {

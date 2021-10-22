@@ -2,7 +2,7 @@ import React, { FC, Fragment, ReactNode, useState } from 'react';
 import cx from 'classnames';
 import { sortSeverity, uniqueMessages, uniqueObjects } from '../utils';
 import { DnLink, ToggleGroup } from '@kubevious/ui-components';
-import { Alert } from '../types';
+import { MyAlert } from '../types';
 import styles from './styles.module.css';
 import { SeverityIcon } from '@kubevious/ui-components';
 import { SeverityType } from '@kubevious/ui-components/dist/SeverityIcon/types';
@@ -12,7 +12,7 @@ export const OBJECT_GROUP = 'Group by Object';
 export const MESSAGE_GROUP = 'Group by Alert';
 
 export interface AlertViewProps {
-    alerts: Alert[];
+    alerts: MyAlert[];
     openRule?: (ruleName: string) => void;
     groupPreset?: string;
     hideGroupSelector?: boolean;
@@ -21,7 +21,7 @@ export interface AlertViewProps {
 export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset, hideGroupSelector }) => {
     const [group, setGroup] = useState<string>(groupPreset || NO_GROUP);
 
-    const clickMessage = (alert: Alert): void => {
+    const clickMessage = (alert: MyAlert): void => {
         if (alert.source.kind === 'rule' && alert.source.id) {
             if (openRule) {
                 openRule(alert.source.id);
@@ -29,7 +29,7 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset, h
         }
     };
 
-    const renderAlertMsg = (alert : Alert) => {
+    const renderAlertMsg = (alert : MyAlert) => {
         return <div
             className={cx(styles.messageContainer, styles.fullWidth, {
                 [styles.rule]: alert.source.kind === 'rule',
@@ -109,7 +109,7 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset, h
                 </div>
 
                 <div className={styles.messageObjects}>
-                    {message.alerts.map((alert) => (alert.dn ? renderDnParts(alert.dn) : null))}
+                    {message.alerts.map((alert : MyAlert) => (alert.dn ? renderDnParts(alert.dn) : null))}
                 </div>
             </div>
         ));

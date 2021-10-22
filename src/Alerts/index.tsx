@@ -8,8 +8,8 @@ import cx from 'classnames';
 
 import styles from './styles.module.css';
 
-import { Alert } from '../types';
-import { AlertsState } from '../types';
+import { MyAlert } from '../types';
+import { AlertsState } from './types';
 
 const sharedState = app.sharedState;
 
@@ -30,7 +30,7 @@ export class Alerts extends ClassComponent<Props, AlertsState> {
     }
 
     componentDidMount(): void {
-        this.subscribeToSharedState('selected_object_alerts', (selected_object_alerts: Alert[]) => {
+        this.subscribeToSharedState('selected_object_alerts', (selected_object_alerts: MyAlert[]) => {
             this.setState({ alerts: selected_object_alerts });
         });
         this.subscribeToSharedState('selected_dn', (selected_dn: string) => {
@@ -43,7 +43,7 @@ export class Alerts extends ClassComponent<Props, AlertsState> {
         sharedState.set('focus_rule_editor', true);
     }
 
-    renderAlerts(alerts: Alert[]): JSX.Element {
+    renderAlerts(alerts: MyAlert[]): JSX.Element {
         if (isEmptyArray(alerts)) {
             return <div className={styles.empty}>No alerts for selected object.</div>
         }

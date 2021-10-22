@@ -1,10 +1,4 @@
-export interface AlertsState {
-    alerts: Alert[];
-    isDnSelected: boolean;
-    allowVerticalScroll?: boolean;
-}
-
-export type Alert = {
+export type MyAlert = {
     source: {
         id?: string;
         kind: string;
@@ -19,7 +13,7 @@ export type Dn = {
     dn?: string;
     alertCount?: AlertCount;
     title?: string;
-    alert?: Alert;
+    alert?: MyAlert;
     unit?: string;
     value?: number;
     targets?: string[];

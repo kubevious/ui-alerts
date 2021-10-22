@@ -1,7 +1,7 @@
-import { Alert, Dn } from './types';
+import { MyAlert, Dn } from './types';
 
-export const uniqueMessages = (messages: Alert[]): Alert[] => {
-    let temp: Alert[] = [];
+export const uniqueMessages = (messages: MyAlert[]): MyAlert[] => {
+    let temp: MyAlert[] = [];
 
     messages?.map((item) => {
         const element = temp.find((tempI) => tempI.severity === item.severity && tempI.msg === item.msg);
@@ -33,7 +33,7 @@ export const uniqueObjects = (objects: Dn[]): Dn[] => {
     return temp;
 };
 
-export const sortSeverity = (a: Alert, b: Alert): number => {
+export const sortSeverity = (a: MyAlert, b: MyAlert): number => {
     if (a.severity === 'error' && b.severity === 'warn') {
         return -1;
     }

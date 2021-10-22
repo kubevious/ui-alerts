@@ -1,7 +1,7 @@
 import { Story } from '@storybook/react';
 import React from 'react';
 import { AlertView } from './';
-import { Alert } from '../types';
+import { MyAlert } from '../types';
 
 export default {
     title: 'AlertView',
@@ -23,7 +23,7 @@ export const Default: Story = () => {
     </>;
 };
 
-const ALERTS : Alert[] = [
+const ALERTS : MyAlert[] = [
     {
         dn: 'root/ns-[gitlab]/app-[gitlab-gitlab-exporter]/initcont-[configure]',
         id: 'Ready-2019-12-27T19:47:59Z',

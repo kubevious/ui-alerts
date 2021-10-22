@@ -3,6 +3,7 @@ import { Story } from '@storybook/react';
 import React from 'react';
 import { Alerts } from './';
 import { CallbackHook } from '@kubevious/ui-components';
+import { MyAlert } from '../types';
 
 export default {
     title: 'Alerts',
@@ -84,11 +85,11 @@ export const ListWithScroll: Story = () => {
     </>;
 };
 
-const ALERTS = [
+const ALERTS : MyAlert[] = [
     {
         dn: 'root/ns-[gitlab]/app-[gitlab-gitlab-exporter]/initcont-[configure]',
         id: 'Ready-2019-12-27T19:47:59Z',
-        msg: 'Rule container-memory-usage failed. Memory request is not set.',
+        msg: 'Rule container-memory-usage failed. Memory request is not set. Please setup resource request and limints in the Deployment configuration.',
         severity: 'error',
         source: {
             kind: 'rule',
