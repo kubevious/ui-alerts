@@ -29,11 +29,11 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset, h
         }
     };
 
-    const renderAlertMsg = (alert : MyAlert) => {
-        return <div
+    const renderAlertMsg = (alert : MyAlert, index: number) => {
+        return <div key={index}
             className={cx(styles.messageContainer, styles.fullWidth, {
                 [styles.rule]: alert.source.kind === 'rule',
-            })}
+            })}            
             onClick={() => clickMessage(alert)}
         >
             <div className={styles.alertIcon}>
@@ -43,12 +43,12 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset, h
         </div>
     }
 
-    const renderDnParts = (dn: string): ReactNode => {
+    const renderDnParts = (dn: string, index: number): ReactNode => {
 
-        return <>
+        return <Fragment key={index}>
             <DnLink dn={dn} size='xs'>
             </DnLink>
-        </>;
+        </Fragment>;
 
     };
 
@@ -64,7 +64,7 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset, h
                         [styles.even]: index && index % 2 !== 0,
                     })}
                 >
-                    {renderAlertMsg(alert)}
+                    {renderAlertMsg(alert, 0)}
                 </div>   
 
                 <div
@@ -109,7 +109,7 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset, h
                 </div>
 
                 <div className={styles.messageObjects}>
-                    {message.alerts.map((alert : MyAlert) => (alert.dn ? renderDnParts(alert.dn) : null))}
+                    {message.alerts.map((alert, i2) => (alert.dn ? renderDnParts(alert.dn, i2) : null))}
                 </div>
             </div>
         ));
@@ -128,7 +128,7 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset, h
                         <div className={styles.objectContainer}>{object.dn && renderDnParts(object.dn)}</div>
 
                         <div className={styles.messageObjects}>
-                            {object.alerts.map((alert) => renderAlertMsg(alert))}
+                            {object.alerts.map((alert, i2) => renderAlertMsg(alert, i2))}
                         </div>
                     </div>
                 ))}
