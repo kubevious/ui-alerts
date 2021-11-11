@@ -125,7 +125,7 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset, h
             <>
                 {objects.map((object, index) => (
                     <div className={styles.groupContainer} key={index}>
-                        <div className={styles.objectContainer}>{object.dn && renderDnParts(object.dn)}</div>
+                        <div className={styles.objectContainer}>{object.dn && renderDnParts(object.dn, 0)}</div>
 
                         <div className={styles.messageObjects}>
                             {object.alerts.map((alert, i2) => renderAlertMsg(alert, i2))}
