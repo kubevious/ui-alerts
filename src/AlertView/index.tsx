@@ -72,7 +72,7 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset, h
                         [styles.even]: index && index % 2 !== 0,
                     })}
                     >
-                    {alert.dn && renderDnParts(alert.dn)}
+                    {alert.dn && renderDnParts(alert.dn, 0)}
                 </div>  
 
             </Fragment>)}
