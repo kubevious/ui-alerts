@@ -40,6 +40,7 @@ export class Alerts extends ClassComponent<Props, AlertsState> {
 
     openRule(ruleName: string): void {
         sharedState.set('rule_editor_selected_rule_id', ruleName);
+        sharedState.set('rule_editor_new_rule', null);
         sharedState.set('focus_rule_editor', true);
     }
 
