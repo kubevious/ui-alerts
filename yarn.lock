@@ -1599,6 +1599,19 @@
     the-promise "^2.0.13"
     uuid "^8.3.2"
 
+"@kubevious/ui-framework@^1.0.59":
+  version "1.0.59"
+  resolved "https://registry.yarnpkg.com/@kubevious/ui-framework/-/ui-framework-1.0.59.tgz#b83eb7f90c951f4bd8753b9b9a4e0245a3240e0c"
+  integrity sha512-tVoh8NbZ8tdKdTFvkkXJhUViFeLNxL0VSjoP6AAgoPvWHL42kohEPU27abEY3znAvQmOfebx7Da7BjWSuL5FUw==
+  dependencies:
+    "@kubevious/http-client" "^1.0.19"
+    moment "^2.29.1"
+    react "^17.0.2"
+    react-router-dom "^5.2.0"
+    the-lodash "^2.0.9"
+    the-promise "^2.0.13"
+    uuid "^8.3.2"
+
 "@kubevious/ui-middleware@^1.0.46":
   version "1.0.46"
   resolved "https://registry.yarnpkg.com/@kubevious/ui-middleware/-/ui-middleware-1.0.46.tgz#10d8ca7739bbf32d44bf0158ea48a38b9a8124df"

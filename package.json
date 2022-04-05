@@ -24,7 +24,7 @@
   "dependencies": {
     "@kubevious/entity-meta": "^1.0.56",
     "@kubevious/ui-components": "^1.0.207",
-    "@kubevious/ui-framework": "^1.0.58",
+    "@kubevious/ui-framework": "^1.0.59",
     "classnames": "^2.2.6",
     "popper.js": "^1.16.1",
     "postcss": "^8.2.10",
