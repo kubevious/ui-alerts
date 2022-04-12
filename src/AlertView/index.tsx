@@ -1,7 +1,7 @@
 import React, { FC, Fragment, ReactNode, useState } from 'react';
 import cx from 'classnames';
 import { sortSeverity, uniqueMessages, uniqueObjects } from '../utils';
-import { DnLink, ToggleGroup } from '@kubevious/ui-components';
+import { DnLink, ScrollbarComponent, ToggleGroup } from '@kubevious/ui-components';
 import { MyAlert } from '../types';
 import styles from './styles.module.css';
 import { SeverityIcon } from '@kubevious/ui-components';
@@ -139,11 +139,13 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset, h
     return (
         <div data-testid="alert-view" className={styles.alertViewContainer}>
             <div className={`${styles.alerts} group-${group}`}>
-                {group === NO_GROUP && renderNoGroup()}
+                <ScrollbarComponent>
+                    {group === NO_GROUP && renderNoGroup()}
 
-                {group === MESSAGE_GROUP && renderMessageGroup()}
+                    {group === MESSAGE_GROUP && renderMessageGroup()}
 
-                {group === OBJECT_GROUP && renderObjectGroup()}
+                    {group === OBJECT_GROUP && renderObjectGroup()}
+                </ScrollbarComponent>
             </div>
 
             {!hideGroupSelector && <>
