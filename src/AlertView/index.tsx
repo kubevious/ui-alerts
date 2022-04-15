@@ -16,9 +16,10 @@ export interface AlertViewProps {
     openRule?: (ruleName: string) => void;
     groupPreset?: string;
     hideGroupSelector?: boolean;
+    skipScrollbar?: boolean;
 }
 
-export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset, hideGroupSelector }) => {
+export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset, hideGroupSelector, skipScrollbar }) => {
     const [group, setGroup] = useState<string>(groupPreset || NO_GROUP);
 
     const clickMessage = (alert: MyAlert): void => {
@@ -136,16 +137,26 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset, h
         );
     };
 
+    const renderContent = () => {
+        return <>
+            {group === NO_GROUP && renderNoGroup()}
+            {group === MESSAGE_GROUP && renderMessageGroup()}
+            {group === OBJECT_GROUP && renderObjectGroup()}
+        </>;
+    }
+
     return (
         <div data-testid="alert-view" className={styles.alertViewContainer}>
             <div className={`${styles.alerts} group-${group}`}>
-                <ScrollbarComponent>
-                    {group === NO_GROUP && renderNoGroup()}
 
-                    {group === MESSAGE_GROUP && renderMessageGroup()}
+                {!skipScrollbar && 
+                    <ScrollbarComponent>
+                        {renderContent()}
+                    </ScrollbarComponent>}
 
-                    {group === OBJECT_GROUP && renderObjectGroup()}
-                </ScrollbarComponent>
+                {skipScrollbar && 
+                    renderContent()}
+                    
             </div>
 
             {!hideGroupSelector && <>
