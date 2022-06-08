@@ -4,7 +4,7 @@ import React from 'react';
 import { Alerts } from './';
 import { CallbackHook } from '@kubevious/ui-components';
 
-import { ALERTS } from '../mock/alerts';
+import { ALERTS } from '../../test/mock/alerts';
 
 export default {
     title: 'Alerts',

@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 import { SeverityIcon } from '@kubevious/ui-components';
 import { SeverityType } from '@kubevious/ui-components/dist/SeverityIcon/types';
 import { useSharedState } from '@kubevious/ui-framework';
-import { Alert, AlertSourceKind, AlertRuleSource } from '@kubevious/ui-middleware/dist/entities/alert';
+import { Alert, AlertSourceKind, AlertRuleSource } from '@kubevious/ui-middleware';
 
 export const NO_GROUP = 'No Group';
 export const OBJECT_GROUP = 'Group by Object';

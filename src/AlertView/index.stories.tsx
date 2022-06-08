@@ -1,7 +1,7 @@
 import { Story } from '@storybook/react';
 import React from 'react';
 import { AlertView } from './';
-import { ALERTS } from '../mock/alerts';
+import { ALERTS } from '../../test/mock/alerts';
 
 export default {
     title: 'AlertView',

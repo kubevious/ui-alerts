@@ -1,4 +1,4 @@
-import { Alert } from '@kubevious/ui-middleware/dist/entities/alert';
+import { Alert } from '@kubevious/ui-middleware';
 
 export interface MyAlert extends Alert {
     dn?: string;
