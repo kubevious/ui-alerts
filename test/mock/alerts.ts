@@ -1,4 +1,4 @@
-import { MyAlert } from '../../';
+import { MyAlert } from '../../src';
 import { AlertSourceKind } from '@kubevious/ui-middleware';
 
 export const ALERTS : MyAlert[] = [
