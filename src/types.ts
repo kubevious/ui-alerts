@@ -1,13 +1,8 @@
-export type MyAlert = {
-    source: {
-        id?: string;
-        kind: string;
-    };
-    msg: string;
-    severity: string;
-    id?: string;
+import { Alert } from '@kubevious/ui-middleware/dist/entities/alert';
+
+export interface MyAlert extends Alert {
     dn?: string;
-};
+}
 
 export type Dn = {
     dn?: string;

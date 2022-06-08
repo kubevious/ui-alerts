@@ -1,39 +1,11 @@
-import { MyAlert, Dn } from './types';
-
-export const uniqueMessages = (messages: MyAlert[]): MyAlert[] => {
-    let temp: MyAlert[] = [];
-
-    messages?.map((item) => {
-        const element = temp.find((tempI) => tempI.severity === item.severity && tempI.msg === item.msg);
-
-        if (!element) {
-            temp.push(item);
-        }
-    });
-
-    return temp;
-};
+import { Alert } from '@kubevious/ui-middleware/dist/entities/alert';
 
 export const isEmptyArray = (arr: any[]): boolean => {
     // Later will be corrected on other type
     return !arr || arr.length === 0;
 };
 
-export const uniqueObjects = (objects: Dn[]): Dn[] => {
-    let temp: Dn[] = [];
-
-    objects?.map((item) => {
-        const element = temp.find((tempI) => tempI.dn === item.dn);
-
-        if (!element) {
-            temp.push(item);
-        }
-    });
-
-    return temp;
-};
-
-export const sortSeverity = (a: MyAlert, b: MyAlert): number => {
+export const sortSeverity = (a: Alert, b: Alert): number => {
     if (a.severity === 'error' && b.severity === 'warn') {
         return -1;
     }

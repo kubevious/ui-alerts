@@ -1,9 +1,8 @@
 import _ from 'the-lodash';
 import React from 'react';
 import { ClassComponent } from '@kubevious/ui-framework';
-import { app } from '@kubevious/ui-framework';
 import { AlertView } from '../AlertView';
-import { isEmptyArray, sortSeverity } from '../utils';
+import { isEmptyArray } from '../utils';
 import cx from 'classnames';
 
 import styles from './styles.module.css';
@@ -11,22 +10,18 @@ import styles from './styles.module.css';
 import { MyAlert } from '../types';
 import { AlertsState } from './types';
 
-const sharedState = app.sharedState;
-
-export interface Props {
+export interface AlertsProps {
 
 }
 
-export class Alerts extends ClassComponent<Props, AlertsState> {
-    constructor(props: Props | Readonly<Props>) {
+export class Alerts extends ClassComponent<AlertsProps, AlertsState> {
+    constructor(props: AlertsProps | Readonly<AlertsProps>) {
         super(props);
 
         this.state = {
             alerts: [],
             isDnSelected: false,
         };
-
-        this.openRule = this.openRule.bind(this);
     }
 
     componentDidMount(): void {
@@ -38,17 +33,11 @@ export class Alerts extends ClassComponent<Props, AlertsState> {
         });
     }
 
-    openRule(ruleName: string): void {
-        sharedState.set('rule_editor_selected_rule_id', ruleName);
-        sharedState.set('rule_editor_is_new_rule', null);
-        sharedState.set('focus_rule_editor', true);
-    }
-
     renderAlerts(alerts: MyAlert[]): JSX.Element {
         if (isEmptyArray(alerts)) {
             return <div className={styles.empty}>No alerts for selected object.</div>
         }
-        return <AlertView alerts={alerts.sort(sortSeverity)} openRule={this.openRule} />;
+        return <AlertView alerts={alerts} />;
     }
 
     render() {

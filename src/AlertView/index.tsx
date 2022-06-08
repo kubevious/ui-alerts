@@ -1,31 +1,47 @@
+import _ from 'the-lodash';
 import React, { FC, Fragment, ReactNode, useState } from 'react';
 import cx from 'classnames';
-import { sortSeverity, uniqueMessages, uniqueObjects } from '../utils';
+import { sortSeverity } from '../utils';
 import { DnLink, ScrollbarComponent, ToggleGroup } from '@kubevious/ui-components';
 import { MyAlert } from '../types';
 import styles from './styles.module.css';
 import { SeverityIcon } from '@kubevious/ui-components';
 import { SeverityType } from '@kubevious/ui-components/dist/SeverityIcon/types';
+import { useSharedState } from '@kubevious/ui-framework';
+import { Alert, AlertSourceKind, AlertRuleSource } from '@kubevious/ui-middleware/dist/entities/alert';
 
 export const NO_GROUP = 'No Group';
 export const OBJECT_GROUP = 'Group by Object';
 export const MESSAGE_GROUP = 'Group by Alert';
 
+
 export interface AlertViewProps {
     alerts: MyAlert[];
-    openRule?: (ruleName: string) => void;
     groupPreset?: string;
     hideGroupSelector?: boolean;
     skipScrollbar?: boolean;
 }
 
-export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset, hideGroupSelector, skipScrollbar }) => {
+export const AlertView: FC<AlertViewProps> = ({ alerts, groupPreset, hideGroupSelector, skipScrollbar }) => {
     const [group, setGroup] = useState<string>(groupPreset || NO_GROUP);
 
+    alerts = alerts ?? [];
+
+    const sharedState = useSharedState();
+
+    const openRule = (ruleName: string) => {
+        sharedState!.set('rule_editor_selected_rule_id', ruleName);
+        sharedState!.set('rule_editor_is_new_rule', null);
+        sharedState!.set('focus_rule_editor', true);
+    }
+
     const clickMessage = (alert: MyAlert): void => {
-        if (alert.source.kind === 'rule' && alert.source.id) {
-            if (openRule) {
-                openRule(alert.source.id);
+        if (alert.source) {
+            if (alert.source.kind === AlertSourceKind.rule) {
+                const ruleName = (alert.source as AlertRuleSource).id;
+                if (ruleName) {
+                    openRule(ruleName);
+                }
             }
         }
     };
@@ -33,7 +49,7 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset, h
     const renderAlertMsg = (alert : MyAlert, index: number) => {
         return <div key={index}
             className={cx(styles.messageContainer, styles.fullWidth, {
-                [styles.rule]: alert.source.kind === 'rule',
+                [styles.rule]: alert.source?.kind === 'rule',
             })}            
             onClick={() => clickMessage(alert)}
         >
@@ -56,10 +72,11 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset, h
 
     const renderNoGroup = (): ReactNode => {
 
-        return <div className={styles.alertTable}>
-            { alerts.map((alert, index) => <Fragment key={index}>
+        // const myAlerts = alerts.sort(sortSeverity);
 
-             
+        return <div className={styles.alertTable}>
+            {alerts.map((alert, index) => <Fragment key={index}>
+
                 <div
                     className={cx(styles.alertDetail, {
                         [styles.even]: index && index % 2 !== 0,
@@ -82,57 +99,82 @@ export const AlertView: FC<AlertViewProps> = ({ alerts, openRule, groupPreset, h
     }
 
     const renderMessageGroup = (): ReactNode => {
-        const messages = uniqueMessages(
-            alerts.map(({ msg, severity, source }) => ({
-                msg,
-                severity,
-                source,
-            })),
-        )
-            .map((m) => ({
-                ...m,
-                alerts: alerts.filter((a) => a.severity === m.severity && a.msg === m.msg),
-            }))
-            .sort(sortSeverity);
 
-        return messages.map((message, index) => (
-            <div className={styles.groupContainer} key={index}>
-                <div
-                    className={cx(styles.messageContainer, {
-                        [styles.rule]: message.source.kind === 'rule',
-                    })}
-                    onClick={() => clickMessage(message)}
-                >
-                    <div className={styles.alertIcon}>
-                        <SeverityIcon severity={(message.severity as SeverityType)} />
+        const alertInfoDict : Record<string, Alert> = {};
+
+        const alertsDict = 
+            _.groupBy(alerts, x => {
+                const alert : Alert = {
+                    id: x.id,
+                    source: x.source,
+                    msg: x.msg,
+                    severity: x.severity,
+                };
+                const key = _.stableStringify(alert);
+                if (!alertInfoDict[key]) {
+                    alertInfoDict[key] = alert
+                }
+                return key;
+            });
+
+        const alertKeys = _.keys(alertsDict).sort((kA, kB) => {
+            return sortSeverity(alertInfoDict[kA], alertInfoDict[kB]);
+        });
+
+        return alertKeys.map((alertKey) => {
+
+            const alert = alertInfoDict[alertKey];
+            const myAlerts = alertsDict[alertKey];
+            
+            return (
+                <div className={styles.groupContainer} key={alertKey}>
+                    <div
+                        className={cx(styles.messageContainer, {
+                            [styles.rule]: alert.source?.kind === AlertSourceKind.rule,
+                        })}
+                        onClick={() => clickMessage(alert)}
+                    >
+                        <div className={styles.alertIcon}>
+                            <SeverityIcon severity={(alert.severity as SeverityType)} />
+                        </div>
+                        {alert.msg}
                     </div>
-                    {message.msg}
-                </div>
 
-                <div className={styles.messageObjects}>
-                    {message.alerts.map((alert, i2) => (alert.dn ? renderDnParts(alert.dn, i2) : null))}
+                    <div className={styles.messageObjects}>
+                        {myAlerts.map((alert, i2) => (alert.dn ? renderDnParts(alert.dn, i2) : null))}
+                    </div>
                 </div>
-            </div>
-        ));
+            )
+        });
     };
 
     const renderObjectGroup = (): ReactNode => {
-        const objects = uniqueObjects(alerts.map(({ dn }) => ({ dn }))).map((o) => ({
-            ...o,
-            alerts: alerts.filter((a) => a.dn === o.dn),
-        }));
+
+        const alertsDict = 
+            _.groupBy(alerts, x => {
+                return x.dn;
+            });
+
+        const objectAlertsDict : Record<string, Alert[]> = {};
+        for(const dn of _.keys(alertsDict))
+        {
+            objectAlertsDict[dn] = alertsDict[dn].sort(sortSeverity);
+        }
 
         return (
             <>
-                {objects.map((object, index) => (
-                    <div className={styles.groupContainer} key={index}>
-                        <div className={styles.objectContainer}>{object.dn && renderDnParts(object.dn, 0)}</div>
+                {_.keys(objectAlertsDict).map((dn) => {
+                    const alerts = objectAlertsDict[dn];
+                    return (
+                        <div className={styles.groupContainer} key={dn}>
+                            <div className={styles.objectContainer}>{dn && renderDnParts(dn, 0)}</div>
 
-                        <div className={styles.messageObjects}>
-                            {object.alerts.map((alert, i2) => renderAlertMsg(alert, i2))}
+                            <div className={styles.messageObjects}>
+                                {alerts.map((alert, i2) => renderAlertMsg(alert, i2))}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    )
+                })}
             </>
         );
     };

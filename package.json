@@ -23,8 +23,9 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@kubevious/entity-meta": "^1.0.69",
-    "@kubevious/ui-components": "^1.0.237",
+    "@kubevious/ui-components": "^1.0.239",
     "@kubevious/ui-framework": "^1.0.59",
+    "@kubevious/ui-middleware": "^1.0.72",
     "classnames": "^2.2.6",
     "popper.js": "^1.16.1",
     "postcss": "^8.4.14",
