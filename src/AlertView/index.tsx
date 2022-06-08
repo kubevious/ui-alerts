@@ -1,7 +1,7 @@
 import _ from 'the-lodash';
 import React, { FC, Fragment, ReactNode, useState } from 'react';
 import cx from 'classnames';
-import { sortSeverity } from '../utils';
+import { sortSeverity } from '../utils/utils';
 import { DnLink, ScrollbarComponent, ToggleGroup } from '@kubevious/ui-components';
 import { MyAlert } from '../types';
 import styles from './styles.module.css';
@@ -13,7 +13,6 @@ import { Alert, AlertSourceKind, AlertRuleSource } from '@kubevious/ui-middlewar
 export const NO_GROUP = 'No Group';
 export const OBJECT_GROUP = 'Group by Object';
 export const MESSAGE_GROUP = 'Group by Alert';
-
 
 export interface AlertViewProps {
     alerts: MyAlert[];

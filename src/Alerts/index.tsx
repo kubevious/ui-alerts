@@ -2,7 +2,7 @@ import _ from 'the-lodash';
 import React from 'react';
 import { ClassComponent } from '@kubevious/ui-framework';
 import { AlertView } from '../AlertView';
-import { isEmptyArray } from '../utils';
+import { isEmptyArray } from '../utils/utils';
 import cx from 'classnames';
 
 import styles from './styles.module.css';
