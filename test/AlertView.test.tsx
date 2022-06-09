@@ -11,8 +11,10 @@ const renderComponent = () => render(<AlertView alerts={ALERTS} />);
 
 describe('AlertView', () => {
     test('Should check that the component AlertView is rendered', async () => {
-        // const { findByTestId } = 
-        await renderComponent();
-        // expect(findByTestId('alert-view')).toBeTruthy();
+        const { findByTestId } = renderComponent();
+
+        const result = await findByTestId('alert-view');
+
+        expect(result).toBeTruthy();
     });
 });

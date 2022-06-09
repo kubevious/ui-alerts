@@ -10,6 +10,9 @@ const renderComponent = () => render(<Alerts />);
 describe('Alerts', () => {
     test('Should check that the component Alerts is rendered', async () => {
         const { findByTestId } = renderComponent();
-        expect(findByTestId('alerts')).toBeTruthy();
+
+        const result = await findByTestId('alerts');
+
+        expect(result).toBeTruthy();
     });
 });
